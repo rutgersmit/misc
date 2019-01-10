@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Password Generator</title>
+	<meta name="viewport" content="width=device-width">
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+	<link rel="stylesheet" type="text/css" href="pwd.css" />
+	<script type="text/javascript" src="core.js"></script>
+	<script type="text/javascript" src="pwd.js"></script>
+</head>
+<body onload="init();">
+
+<div id="container">
+<div id="page">
+
+	<h1>Password Generator</h1>
+	<form name="hashform" action="index.php" onsubmit="domainToLower(); setTimeout('pw()', 0); return false;" autocomplete="off">
+		<fieldset>
+			<p>
+				<label for="domain">Domain</label>
+				<input type="text" name="domain" id="domain" class="text" />
+			</p>
+			<div class="clear"></div>
+			<p>
+				<label for="sitePassword">Password</label>
+				<input type="password" name="sitePassword" id="sitePassword" value="" onkeydown="startOver();" class="text" />
+			</p>
+			<div class="clear"></div>
+			<p>
+				<input type="submit" name="submitButton" id="submitButton" value="Generate" />
+			</p>
+			<p id="result">
+				<label for="hashedPassword">Result</label>
+				<input type="text" name="hashedPassword" id="hashedPassword" />
+			</p>
+			<div class="clear"></div>
+			
+		</fieldset>
+	</form>
+
+</div>
+</div>
+
+</body>
+</html>
