@@ -1,0 +1,9 @@
+adconfig.ster.nl
+alogs.umeng.com
+analytics.strava.com
+brahe.apptimize.com
+customerevents.netflix.com
+insights.plista.com
+mon.byteoversea.com
+tellerapi.npo.nl
+tellerapi.omroep.nl
