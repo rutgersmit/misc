@@ -7,3 +7,4 @@ insights.plista.com
 mon.byteoversea.com
 tellerapi.npo.nl
 tellerapi.omroep.nl
+incoming.telemetry.mozilla.org
