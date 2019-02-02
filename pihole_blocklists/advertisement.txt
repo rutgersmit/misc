@@ -8,3 +8,5 @@ mon.byteoversea.com
 tellerapi.npo.nl
 tellerapi.omroep.nl
 incoming.telemetry.mozilla.org
+sterdfpproxy.ster.nl
+cdn.ster.nl
