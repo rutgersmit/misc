@@ -10,3 +10,4 @@ tellerapi.omroep.nl
 incoming.telemetry.mozilla.org
 sterdfpproxy.ster.nl
 cdn.ster.nl
+marktplaats.demdex.net
