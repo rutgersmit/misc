@@ -15,3 +15,4 @@ marktplaats.demdex.net
 ads-sdk.upltv.com
 geo.tibaco.net
 hb.improvedigital.com
+query.autheos.com
