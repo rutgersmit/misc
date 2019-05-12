@@ -10,6 +10,7 @@ general = {
 }
 
 mysql = {
+	'enabled': True,
 	'host': '192.168.100.200',
 	'user': 'temperatures',
 	'password': 'temperatures',
@@ -17,6 +18,7 @@ mysql = {
 }
 
 influxdb = {
+	'enabled': True,
 	'host': '192.168.100.11',
 	'port': '8086',
 	'user': 'pi01',

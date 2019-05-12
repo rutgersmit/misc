@@ -11,6 +11,10 @@ from influxdb import InfluxDBClient
 from ds18b20 import DS18B20
 
 def save_mysql(timestamp, location, temperature, humidity):
+	if cfg.mysql['enabled'] = False:
+		print "Saving to MySQL is disabled in the config"
+		return
+
 	sys.stdout.write("Saving to MySQL...")
 	tsql = """INSERT INTO `temperatures` (`datetime`, `location`, `temperature`, `humidity`) VALUES(%s,%s,%s,%s);"""
 	insert = (timestamp, location, temperature, humidity)
@@ -26,6 +30,10 @@ def save_mysql(timestamp, location, temperature, humidity):
 
 
 def save_influxdb(timestamp, location, temperature, humidity):
+	if cfg.influxdb['enabled'] = False:
+		print "Saving to InfluxDB is disabled in the config"
+		return
+
 	sys.stdout.write("Saving to InfluxDB...")
 	influx_data = [
 			{
