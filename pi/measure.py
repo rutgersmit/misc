@@ -11,7 +11,7 @@ from influxdb import InfluxDBClient
 from ds18b20 import DS18B20
 
 def save_mysql(timestamp, location, temperature, humidity):
-	if cfg.mysql['enabled'] = False:
+	if cfg.mysql['enabled'] == False:
 		print "Saving to MySQL is disabled in the config"
 		return
 
@@ -30,7 +30,7 @@ def save_mysql(timestamp, location, temperature, humidity):
 
 
 def save_influxdb(timestamp, location, temperature, humidity):
-	if cfg.influxdb['enabled'] = False:
+	if cfg.influxdb['enabled'] == False:
 		print "Saving to InfluxDB is disabled in the config"
 		return
 
@@ -57,11 +57,14 @@ def save_influxdb(timestamp, location, temperature, humidity):
 
 
 def measure():
-	
+	print "---"
+	print cfg.general['location']
+	print "---"
+
 	try:
 		# Read the sensor using the configured driver and gpio
 		timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
-		location = cfg.general['location'];
+		loc = cfg.general['location'];
 
 		sensor = DS18B20()
 
@@ -71,18 +74,18 @@ def measure():
 		humidity = 0.0
 
 		# Print for debugging, uncomment the below line
-		sys.stdout.write("[%s]- %s - Temp: %s, Humidity: %s\n" % (timestamp, location, temperature, humidity))
+		sys.stdout.write("[%s]- %s - Temp: %s, Humidity: %s\n" % (timestamp, loc, temperature, humidity))
 
 		# Save to InfluxDB
 		try:
-			save_influxdb(timestamp, location, temperature, humidity)
+			save_influxdb(timestamp, loc, temperature, humidity)
 		except Exception, e:
 			print "Error saving to InfluxDB: " + e.message
 
 
 		# Save to MySQL
 		try:
-			save_mysql(timestamp, location, temperature, humidity)
+			save_mysql(timestamp, loc, temperature, humidity)
 		except Exception, e:
 			print "Error saving to MySQL: " + e.message
 
