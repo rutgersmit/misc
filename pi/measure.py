@@ -31,7 +31,7 @@ def save_influxdb(timestamp, location, temperature, humidity):
 			{
 				"measurement": cfg.influxdb['measurement'],
 				"tags": {
-					"location": cfg.influxdb['location'],
+					"location": location,
 				},
 				"time": timestamp,
 				"fields": {
@@ -53,6 +53,7 @@ def measure():
 	try:
 		# Read the sensor using the configured driver and gpio
 		timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+		location = cfg.general['location'];
 
 		sensor = DS18B20()
 

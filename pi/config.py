@@ -1,4 +1,14 @@
 #!/usr/bin/env python
+import socket
+
+def getlocation():
+	# Hostname is like rpi-t-location
+	return socket.gethostname()[6:]
+
+general = {
+	'location' : getlocation(),
+}
+
 mysql = {
 	'host': '192.168.100.200',
 	'user': 'temperatures',
@@ -12,6 +22,5 @@ influxdb = {
 	'user': 'pi01',
 	'password': 'raspberry',
 	'database': 'temperatures',
-	'measurement': 'denieuwezaak',# think of measurement as a SQL table, it's not... but...
-	'location': 'office'
+	'measurement': 'denieuwezaak'
 }
