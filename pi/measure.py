@@ -57,9 +57,6 @@ def save_influxdb(timestamp, location, temperature, humidity):
 
 
 def measure():
-	print "---"
-	print cfg.general['location']
-	print "---"
 
 	try:
 		# Read the sensor using the configured driver and gpio
