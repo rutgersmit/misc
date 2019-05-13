@@ -1,67 +1,81 @@
 version: '2'
-
 volumes:
-    grafana:
-    chronograf:
-    influx:
-    mysql:
-
+    grafana: null
+    chronograf: null
+    influx: null
+    mysql: null
 services:
+    haproxy:
+        container_name: haproxy
+        image: haproxy:latest
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/var/docker/haproxy:/usr/local/etc/haproxy'
+        ports:
+            - '80:80'
+        networks:
+            app-network:
+                aliases:
+                    - mysqlsvr
     influxdb:
-            container_name: influxdb
-            image: influxdb:1.7
-            restart: unless-stopped
-            ports:
-                - '8086:8086'
-            volumes:
-                - influx-data:/var/lib/influxdb
-            networks:
-                - app-network
-
+        container_name: influxdb
+        image: 'influxdb:1.7'
+        restart: unless-stopped
+        ports:
+            - '8086:8086'
+        volumes:
+            - 'influx-data:/var/lib/influxdb'
+        networks:
+            app-network:
+                aliases:
+                    - influxsvr
     grafana:
         container_name: grafana
-        image: grafana/grafana:6.1.6
+        image: 'grafana/grafana:6.1.6'
         ports:
             - '3000:3000'
         restart: unless-stopped
         volumes:
-            - grafana-data:/var/lib/grafana
+            - 'grafana-data:/var/lib/grafana'
         networks:
-            - app-network
+            app-network:
+                aliases:
+                    - grafanasvr
         links:
             - influxdb
-
     chronograf:
         container_name: chronograf
-        image: chronograf:1.7
+        image: 'chronograf:1.7'
         ports:
             - '8888:8888'
         restart: unless-stopped
         volumes:
-            - chronograf-data:/var/lib/chronograf
+            - 'chronograf-data:/var/lib/chronograf'
         networks:
-            - app-network
+            app-network:
+                aliases:
+                    - chronografsvr
         links:
             - influxdb
 
     db:
         container_name: mysql
-        image: mysql:5.7
+        image: 'mysql:5.7'
         restart: unless-stopped
         environment:
-            MYSQL_DATABASE: 'temperatures'
-            MYSQL_ROOT_PASSWORD: 'LjtuUGfQChBFSM8fA244VrzC'
+            MYSQL_DATABASE: temperatures
+            MYSQL_ROOT_PASSWORD: LjtuUGfQChBFSM8fA244VrzC
             MYSQL_ONETIME_PASSWORD: 'True'
-            MYSQL_USER: 'temperatures'
-            MYSQL_PASSWORD: 'VN3tXuLaPpY6Nk7f6w2CV4qd'
+            MYSQL_USER: temperatures
+            MYSQL_PASSWORD: VN3tXuLaPpY6Nk7f6w2CV4qd
         ports:
             - '3306:3306'
         volumes:
-          - mysql-data:/var/lib/mysql
+            - 'mysql-data:/var/lib/mysql'
         networks:
-            - app-network
-
+            app-network:
+                aliases:
+                    - mysqlsvr
 networks:
     app-network:
         driver: bridge
-    
