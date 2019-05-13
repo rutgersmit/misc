@@ -19,10 +19,10 @@ mysql = {
 
 influxdb = {
 	'enabled': True,
-	'host': '192.168.100.11',
-	'port': '8086',
-	'user': 'pi01',
-	'password': 'raspberry',
+	'host': '%INFLUX_HOST%',
+	'port': '%INFLUX_PORT%',
+	'user': '%INFLUX_USER%',
+	'password': '%INFLUX_PASSWORD%',
 	'database': 'temperatures',
 	'measurement': 'denieuwezaak'
 }
