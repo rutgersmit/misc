@@ -1,22 +1,11 @@
 version: '2'
 volumes:
-    grafana: null
-    chronograf: null
-    influx: null
-    mysql: null
+    grafana-data: null
+    chronograf-data: null
+    influx-data: null
+    mysql-data: null
+
 services:
-    haproxy:
-        container_name: haproxy
-        image: haproxy:latest
-        volumes:
-            - '/var/run/docker.sock:/var/run/docker.sock'
-            - '/var/docker/haproxy:/usr/local/etc/haproxy'
-        ports:
-            - '80:80'
-        networks:
-            app-network:
-                aliases:
-                    - mysqlsvr
     influxdb:
         container_name: influxdb
         image: 'influxdb:1.7'
@@ -57,7 +46,22 @@ services:
                     - chronografsvr
         links:
             - influxdb
-
+    haproxy:
+        container_name: haproxy
+        image: haproxy:latest
+        volumes:
+            - '/var/run/docker.sock:/var/run/docker.sock'
+            - '/var/docker/haproxy:/usr/local/etc/haproxy'
+        ports:
+            - '80:80'
+        networks:
+            app-network:
+                aliases:
+                    - mysqlsvr
+        depends_on:
+            - chronograf
+            - grafana
+            - influxdb
     db:
         container_name: mysql
         image: 'mysql:5.7'
