@@ -11,9 +11,9 @@ general = {
 
 mysql = {
 	'enabled': True,
-	'host': '192.168.100.200',
-	'user': 'temperatures',
-	'password': 'temperatures',
+	'host': '%MYSQL_HOST%',
+	'user': '%MYSQL_USER%',
+	'password': '%MYSQL_PASSWORD%',
 	'database': 'temperatures'
 }
 
