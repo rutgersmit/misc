@@ -1,0 +1,64 @@
+version: '2'
+
+volumes:
+    grafana:
+    chronograf:
+    influx:
+    mysql:
+
+services:
+    influxdb:
+            container_name: influxdb
+            image: influxdb:1.7
+            restart: unless-stopped
+            ports:
+                - '8086:8086'
+            volumes:
+                - influx-data:/var/lib/influxdb
+            networks:
+                - app-network
+
+    grafana:
+        container_name: grafana
+        image: grafana/grafana:6.1.6
+        ports:
+            - '3000:3000'
+        restart: unless-stopped
+        volumes:
+            - grafana-data:/var/lib/grafana
+        networks:
+            - app-network
+        links:
+            - influxdb
+
+    chronograf:
+        container_name: chronograf
+        image: chronograf:1.7
+        ports:
+            - '8888:8888'
+        restart: unless-stopped
+        volumes:
+            - chronograf-data:/var/lib/chronograf
+        networks:
+            - app-network
+        links:
+            - influxdb
+
+    db:
+        container_name: mysql
+        image: mysql:5.7
+        restart: unless-stopped
+        environment:
+            MYSQL_DATABASE: 'temperatures'
+            MYSQL_ROOT_PASSWORD: '****'
+        ports:
+            - '3306:3306'
+        volumes:
+          - mysql-data:/var/lib/mysql
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
+    
