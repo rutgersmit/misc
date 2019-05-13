@@ -50,7 +50,10 @@ services:
         restart: unless-stopped
         environment:
             MYSQL_DATABASE: 'temperatures'
-            MYSQL_ROOT_PASSWORD: '****'
+            MYSQL_ROOT_PASSWORD: 'LjtuUGfQChBFSM8fA244VrzC'
+            MYSQL_ONETIME_PASSWORD: 'True'
+            MYSQL_USER: 'temperatures'
+            MYSQL_PASSWORD: 'VN3tXuLaPpY6Nk7f6w2CV4qd
         ports:
             - '3306:3306'
         volumes:
