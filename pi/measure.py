@@ -16,6 +16,8 @@ def save_mysql(timestamp, location, temperature, humidity):
 		return
 
 	sys.stdout.write("Saving to MySQL...")
+	sys.stdout.flush()
+
 	tsql = """INSERT INTO `temperatures` (`datetime`, `location`, `temperature`, `humidity`) VALUES(%s,%s,%s,%s);"""
 	insert = (timestamp, location, temperature, humidity)
 
@@ -27,6 +29,7 @@ def save_mysql(timestamp, location, temperature, humidity):
 	connection.commit()
 	connection.close()
 	sys.stdout.write(" done!\n")
+	sys.stdout.flush()
 
 
 def save_influxdb(timestamp, location, temperature, humidity):
@@ -35,6 +38,7 @@ def save_influxdb(timestamp, location, temperature, humidity):
 		return
 
 	sys.stdout.write("Saving to InfluxDB...")
+	sys.stdout.flush()
 	influx_data = [
 			{
 				"measurement": cfg.influxdb['measurement'],
@@ -72,6 +76,7 @@ def measure():
 
 		# Print for debugging, uncomment the below line
 		sys.stdout.write("[%s]- %s - Temp: %s, Humidity: %s\n" % (timestamp, loc, temperature, humidity))
+		sys.stdout.flush()
 
 		# Save to InfluxDB
 		try:
