@@ -17,7 +17,7 @@ services:
         networks:
             app-network:
                 aliases:
-                    - influxsvr
+                    - influxdbsvr
     grafana:
         container_name: grafana
         image: 'grafana/grafana:6.1.6'
