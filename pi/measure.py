@@ -22,7 +22,7 @@ def save_mysql(timestamp, location, temperature, humidity):
 	insert = (timestamp, location, temperature, humidity)
 
 	#connection = mysql.connector.connect(host='\''+cfg.mysql['host']+'\'',database='\''+cfg.mysql['database']+'\'',user='\''+cfg.mysql['user']+'\'',password='\''+cfg.mysql['password']+'\'')
-	connection = mysql.connector.connect(host=cfg.mysql['host'],database=cfg.mysql['database'],user=cfg.mysql['user'],password=cfg.mysql['password'])
+	connection = mysql.connector.connect(host=cfg.mysql['host'],database=cfg.mysql['database'],user=cfg.mysql['user'],password=cfg.mysql['password'],connection_timeout=5)
 	cursor = connection.cursor(prepared=True)
 
 	result = cursor.execute(tsql, insert)
