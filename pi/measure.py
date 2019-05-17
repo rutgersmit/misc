@@ -83,14 +83,14 @@ def measure():
 		try:
 			save_influxdb(timestamp, loc, temperature, humidity)
 		except Exception, e:
-			print "Error saving to InfluxDB: " + e.message
+			print "Error saving to InfluxDB: " + str(e.message)
 
 
 		# Save to MySQL
 		try:
 			save_mysql(timestamp, loc, temperature, humidity)
 		except Exception, e:
-			print "Error saving to MySQL: " + e.message
+			print "Error saving to MySQL: " + str(e.message)
 
 
 	except KeyboardInterrupt:
