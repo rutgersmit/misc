@@ -5,8 +5,11 @@ import operator
 import Adafruit_DHT
 
 def Average(lst):
-    lst=filter(operator.isNumberType, lst)
-    return sum(lst) / len(lst)
+    lst=filter(operator.isNumberType, lst) # remove non numeric values
+    lst.remove(max(lst)) # remove one highest value
+    lst.remove(min(lst)) # remove one lowest value
+#    print "L:"+str(len(lst))
+    return sum(lst) / len(lst) # return the average
 
 measurecount=10
 temps = [0 for i in xrange(measurecount)]
