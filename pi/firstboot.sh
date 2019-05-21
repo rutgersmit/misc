@@ -1,5 +1,6 @@
-# deprecated by the introduction of the 1wire PiBakery block
-
-#sh -c "echo 'dtoverlay=w1-gpio' >> /boot/config.txt"
-#sh -c "echo 'w1-gpio pullup=1' >> /etc/modules"
-#sh -c "echo 'w1-therm' >> /etc/modules"
+apt install git -y
+git clone https://github.com/adafruit/Adafruit_Python_DHT
+cd Adafruit_Python_DHT
+python setup.py install
+cd ..
+rm -rf Adafruit_Python_DHT
