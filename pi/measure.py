@@ -21,7 +21,8 @@ def save_mysql(timestamp, location, temperature, humidity):
 	tsql = """INSERT INTO `temperatures` (`datetime`, `location`, `temperature`, `humidity`) VALUES(%s,%s,%s,%s);"""
 	insert = (timestamp, location, temperature, humidity)
 
-	connection = mysql.connector.connect(host=cfg.mysql['host'],database=cfg.mysql['database'],user=cfg.mysql['user'],password=cfg.mysql['password'])
+	#connection = mysql.connector.connect(host='\''+cfg.mysql['host']+'\'',database='\''+cfg.mysql['database']+'\'',user='\''+cfg.mysql['user']+'\'',password='\''+cfg.mysql['password']+'\'')
+	connection = mysql.connector.connect(host=cfg.mysql['host'],database=cfg.mysql['database'],user=cfg.mysql['user'],password=cfg.mysql['password'],connection_timeout=5)
 	cursor = connection.cursor(prepared=True)
 
 	result = cursor.execute(tsql, insert)
@@ -53,7 +54,7 @@ def save_influxdb(timestamp, location, temperature, humidity):
 			}
 		]
 
-	influx_client = InfluxDBClient(cfg.influxdb['host'], cfg.influxdb['port'], cfg.influxdb['user'], cfg.influxdb['password'], cfg.influxdb['database'])
+	influx_client = InfluxDBClient(host='\''+cfg.influxdb['host']+'\'', port=cfg.influxdb['port'], username='\''+cfg.influxdb['user']+'\'', password='\''+cfg.influxdb['password']+'\'', database='\''+cfg.influxdb['database']+'\'')
 	influx_client.write_points(influx_data)
 
 	sys.stdout.write(" done!\n")
@@ -82,14 +83,14 @@ def measure():
 		try:
 			save_influxdb(timestamp, loc, temperature, humidity)
 		except Exception, e:
-			print "Error saving to InfluxDB: " + e.message
+			print "Error saving to InfluxDB: " + str(e.message)
 
 
 		# Save to MySQL
 		try:
 			save_mysql(timestamp, loc, temperature, humidity)
 		except Exception, e:
-			print "Error saving to MySQL: " + e.message
+			print "Error saving to MySQL: " + str(e.message)
 
 
 	except KeyboardInterrupt:
