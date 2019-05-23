@@ -41,7 +41,7 @@ if cfg.mysql['enabled'] == False:
 else:
 	configMySQL()
 
-if cfg.influxdb['enabled'] == True:
+if cfg.influxdb['enabled'] == False:
     print "Skipping InfluxDB. Disabled in the config"
 else:
 	configInflux()
