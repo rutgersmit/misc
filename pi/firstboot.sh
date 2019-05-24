@@ -1,3 +1,4 @@
+apt update
 apt install python-dev git -y
 git clone https://github.com/adafruit/Adafruit_Python_DHT
 cd Adafruit_Python_DHT
