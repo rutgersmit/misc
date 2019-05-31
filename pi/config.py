@@ -10,7 +10,7 @@ general = {
 }
 
 mysql = {
-	'enabled': False,
+	'enabled': True,
 	'host': '%MYSQL_HOST%',
 	'user': '%MYSQL_USER%',
 	'password': '%MYSQL_PASSWORD%',
@@ -18,7 +18,7 @@ mysql = {
 }
 
 influxdb = {
-	'enabled': False,
+	'enabled': True,
 	'host': '%INFLUX_HOST%',
 	'port': '%INFLUX_PORT%',
 	'user': '%INFLUX_USER%',
