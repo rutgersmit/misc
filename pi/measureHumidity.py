@@ -5,16 +5,24 @@ import operator
 import Adafruit_DHT
 
 measurecount=10
-temps = [0 for i in xrange(measurecount)]
-humids = [0 for i in xrange(measurecount)]
+temps = [0] * measurecount
+humids = [0] * measurecount
+
+
 
 def Average(lst):
-    if len(lst) is 0:
+    lst=filter(operator.isNumberType, lst) # remove non numeric values
+    if len(lst) == 0:
         return 0
 
-    lst=filter(operator.isNumberType, lst) # remove non numeric values
-    lst.remove(max(lst)) # remove one highest value
-    lst.remove(min(lst)) # remove one lowest value
+    lst.remove(max(lst or [0])) # remove one highest value
+    if len(lst) < 3:
+        return 0
+
+    lst.remove(min(lst or [0])) # remove one lowest value
+    if len(lst) < 3:
+        return 0
+
     return sum(lst) / len(lst) # return the average
 
 def gethumidity():
