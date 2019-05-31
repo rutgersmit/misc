@@ -9,6 +9,9 @@ temps = [0 for i in xrange(measurecount)]
 humids = [0 for i in xrange(measurecount)]
 
 def Average(lst):
+    if len(lst) is 0:
+        return 0
+
     lst=filter(operator.isNumberType, lst) # remove non numeric values
     lst.remove(max(lst)) # remove one highest value
     lst.remove(min(lst)) # remove one lowest value
