@@ -60,20 +60,23 @@ def save_influxdb(timestamp, location, temperature, humidity):
     sys.stdout.flush()
 
 if __name__ == "__main__":
+    print "Measure temperature"
+    temperature=mTemp.gettemperature()
+    print "Temperature: ", temperature
+
+    print "Measure humidity"
+    humidity=mHumid.gethumidity()
+    print "Humidity: ", humidity
+
+    timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+    loc = cfg.general['location'];
+
     try:
-        print "Measure temperature"
-        temperature=mTemp.gettemperature()
-        print "Temperature: ", temperature
-
-        print "Measure humidity"
-        humidity=mHumid.gethumidity()
-        print "Humidity: ", humidity
-
-        timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
-        loc = cfg.general['location'];
-
         save_mysql(timestamp, loc, temperature, humidity)
+    except KeyboardInterrupt:
+        pass
+    
+    try:
         save_influxdb(timestamp, loc, temperature, humidity)
-
     except KeyboardInterrupt:
         pass
