@@ -73,10 +73,10 @@ if __name__ == "__main__":
 
     try:
         save_mysql(timestamp, loc, temperature, humidity)
-    except KeyboardInterrupt:
+    except:
         pass
     
     try:
         save_influxdb(timestamp, loc, temperature, humidity)
-    except KeyboardInterrupt:
+    except:
         pass
