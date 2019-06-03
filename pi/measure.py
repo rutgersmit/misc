@@ -74,9 +74,9 @@ if __name__ == "__main__":
     try:
         save_mysql(timestamp, loc, temperature, humidity)
     except:
-        pass
+        print "Error saving to MySQL"
     
     try:
         save_influxdb(timestamp, loc, temperature, humidity)
     except:
-        pass
+        print "Error saving to InfluxDB"
