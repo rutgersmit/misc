@@ -61,13 +61,17 @@ def save_influxdb(timestamp, location, temperature, humidity):
 
 if __name__ == "__main__":
     print "Measure temperature"
+
     temperature=mTemp.gettemperature()
     if temperature == 666:
         print "No sensor found"
         sys.exit()
 
+    print "Temperature: ", temperature
     print "Measure humidity"
+
     humidity=mHumid.gethumidity()
+
     print "Humidity: ", humidity
 
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
