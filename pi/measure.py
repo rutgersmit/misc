@@ -53,7 +53,7 @@ def save_influxdb(timestamp, location, temperature, humidity):
             }
         ]
 
-    influx_client = InfluxDBClient(cfg.influxdb['host'], cfg.influxdb['port'], cfg.influxdb['user'], cfg.influxdb['password'], cfg.influxdb['database'], timout=5)
+    influx_client = InfluxDBClient(cfg.influxdb['host'], cfg.influxdb['port'], cfg.influxdb['user'], cfg.influxdb['password'], cfg.influxdb['database'], timeout=5)
     influx_client.write_points(influx_data)
 
     sys.stdout.write(" done!\n")
