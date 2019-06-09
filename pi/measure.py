@@ -65,22 +65,22 @@ def save_influxdb(timestamp, location, temperature, humidity):
 if __name__ == "__main__":
     print "Measure temperature"
 
-    if i2ctest.device_present()
-	    print "Measuring via I2C"
+    if i2ctest.device_present():
+        print "Measuring via I2C"
         temperature = i2cTemp.gettemperature()
     else:
-	    print "Measuring via Single Wire"
+        print "Measuring via Single Wire"
         temperature = mTemp.gettemperature()
     
     if temperature == 666:
-        print "No temperasture/saensor found"
+        print "No temperature/saensor found, exiting"
         sys.exit()
 
     print "Temperature: ", temperature
 
     print "Measure humidity"
-    if i2ctest.device_present()
-	print "Measuring via I2C"
+    if i2ctest.device_present():
+        print "Measuring via I2C"
         temperature = i2cTemp.gethumidity()
     else:
 	    print "Measuring via Single Wire"
