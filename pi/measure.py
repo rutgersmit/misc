@@ -83,7 +83,7 @@ if __name__ == "__main__":
         print "Measuring via I2C"
         temperature = i2cTemp.gethumidity()
     else:
-	    print "Measuring via Single Wire"
+        print "Measuring via Single Wire"
         humidity=mHumid.gethumidity()
 
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
