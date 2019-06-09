@@ -8,8 +8,6 @@ measurecount=10
 temps = [0] * measurecount
 humids = [0] * measurecount
 
-
-
 def Average(lst):
     lst=filter(operator.isNumberType, lst) # remove non numeric values
     if len(lst) == 0:
@@ -25,7 +23,7 @@ def Average(lst):
 
     return sum(lst) / len(lst) # return the average
 
-def gethumidity():
+def readHumidity():
     for x in range(measurecount):
         humidity, temperature = Adafruit_DHT.read(11, 2)
         if humidity is None or temperature is None:
@@ -38,3 +36,8 @@ def gethumidity():
             humids[x] = humidity
 
     return round(Average(humids),2)
+
+
+if __name__=="__main__":
+   h = readHumidity()
+   print "Humidity: ", h

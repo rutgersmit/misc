@@ -1,14 +1,12 @@
-#! /usr/bin/env python
+#!/usr/bin/python
 import sys
 import time
 import datetime
 import mysql.connector
 
-import I2Ctest as i2ctest
-
 import config as cfg
 import measureTemperatureI2C as i2cTemp
-import measureTemperature as mTemp
+import measureTemperatureSW as swTemp
 import measureHumidity as mHumid
 
 from influxdb import InfluxDBClient
@@ -62,15 +60,16 @@ def save_influxdb(timestamp, location, temperature, humidity):
     sys.stdout.write(" done!\n")
     sys.stdout.flush()
 
-if __name__ == "__main__":
+
+def measure():
     print "Measure temperature"
 
-    if i2ctest.device_present()
-	    print "Measuring via I2C"
-        temperature = i2cTemp.gettemperature()
+    if i2cTemp.devicePresent():
+        print "Measuring via I2C"
+        temperature = i2cTemp.readTemperature()
     else:
-	    print "Measuring via Single Wire"
-        temperature = mTemp.gettemperature()
+        print "Measuring via Single Wire"
+        temperature = swTemp.readTemperature()
     
     if temperature == 666:
         print "No temperasture/saensor found"
@@ -79,12 +78,14 @@ if __name__ == "__main__":
     print "Temperature: ", temperature
 
     print "Measure humidity"
-    if i2ctest.device_present()
-	print "Measuring via I2C"
-        temperature = i2cTemp.gethumidity()
+    if i2cTemp.devicePresent():
+        print "Measuring via I2C"
+        humidity = i2cTemp.readHumidity()
     else:
-	    print "Measuring via Single Wire"
-        humidity=mHumid.gethumidity()
+        print "Measuring via DHT11"
+        humidity = mHumid.readHumidity()
+
+    print "Humidity: ", humidity
 
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
     loc = cfg.general['location'];
@@ -98,3 +99,9 @@ if __name__ == "__main__":
         save_influxdb(timestamp, loc, temperature, humidity)
     except:
         print "Error saving to InfluxDB"
+
+
+
+
+if __name__ == "__main__":
+    measure()
