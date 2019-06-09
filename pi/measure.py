@@ -4,7 +4,10 @@ import time
 import datetime
 import mysql.connector
 
+import I2Ctest as i2ctest
+
 import config as cfg
+import measureTemperatureI2C as i2cTemp
 import measureTemperature as mTemp
 import measureHumidity as mHumid
 
@@ -62,17 +65,26 @@ def save_influxdb(timestamp, location, temperature, humidity):
 if __name__ == "__main__":
     print "Measure temperature"
 
-    temperature=mTemp.gettemperature()
+    if i2ctest.device_present()
+	    print "Measuring via I2C"
+        temperature = i2cTemp.gettemperature()
+    else:
+	    print "Measuring via Single Wire"
+        temperature = mTemp.gettemperature()
+    
     if temperature == 666:
-        print "No sensor found"
+        print "No temperasture/saensor found"
         sys.exit()
 
     print "Temperature: ", temperature
+
     print "Measure humidity"
-
-    humidity=mHumid.gethumidity()
-
-    print "Humidity: ", humidity
+    if i2ctest.device_present()
+	print "Measuring via I2C"
+        temperature = i2cTemp.gethumidity()
+    else:
+	    print "Measuring via Single Wire"
+        humidity=mHumid.gethumidity()
 
     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
     loc = cfg.general['location'];
