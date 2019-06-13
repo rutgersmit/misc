@@ -159,7 +159,7 @@ def readBME280All(addr=DEVICE):
 def devicePresent():
   try:
     (chip_id, chip_version) = readBME280ID()
-    return True
+    return chip_id>0
   except IOError:
     pass
 
