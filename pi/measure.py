@@ -72,7 +72,7 @@ def measure():
         temperature = swTemp.readTemperature()
     
     if temperature == 666:
-        print "No temperasture/saensor found"
+        print "No temperasture/sensor found"
         sys.exit()
 
     print "Temperature: ", temperature
