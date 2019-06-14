@@ -87,7 +87,8 @@ def measure():
 
     print "Humidity: ", humidity
 
-    timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
+    utc_datetime = datetime.datetime.utcnow()
+    timestamp = utc_datetime.strftime("%Y-%m-%d %H:%M:%S")
     loc = cfg.general['location'];
 
     try:
