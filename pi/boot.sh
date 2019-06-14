@@ -1,5 +1,8 @@
 #!/bin/bash
-rfkill unblock all
+raspi-config nonint do_i2c 0 # enable i2c
+raspi-config nonint do_onewire 0 # enable onewire
+rfkill unblock all # unblock wlan0
+
 apt install python-smbus -y
 
 files=( "ds18b20.py" "config.py" "measure.py" "measureHumidity.py" "measureTemperatureSW.py" "measureTemperatureI2C.py")
