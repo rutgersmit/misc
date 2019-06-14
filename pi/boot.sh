@@ -1,4 +1,5 @@
 #!/bin/bash
+rfkill unblock all
 apt install python-smbus -y
 
 files=( "ds18b20.py" "config.py" "measure.py" "measureHumidity.py" "measureTemperatureSW.py" "measureTemperatureI2C.py")
