@@ -62,6 +62,10 @@ def save_influxdb(timestamp, location, temperature, humidity):
 
 
 def measure():
+    utc_datetime = datetime.datetime.utcnow()
+    timestamp = utc_datetime.strftime("%Y-%m-%d %H:%M:%S")
+    loc = cfg.general['location'];
+
     print "Measure temperature"
 
     if i2cTemp.devicePresent():
@@ -75,6 +79,10 @@ def measure():
         print "No temperasture/sensor found"
         sys.exit()
 
+    # correcting faulty sensor
+    if loc == "dotnet":
+        temperature = temperature + 1.5
+
     print "Temperature: ", temperature
 
     print "Measure humidity"
@@ -86,10 +94,6 @@ def measure():
         humidity = mHumid.readHumidity()
 
     print "Humidity: ", humidity
-
-    utc_datetime = datetime.datetime.utcnow()
-    timestamp = utc_datetime.strftime("%Y-%m-%d %H:%M:%S")
-    loc = cfg.general['location'];
 
     try:
         save_mysql(timestamp, loc, temperature, humidity)
