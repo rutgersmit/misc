@@ -16,6 +16,5 @@ ads-sdk.upltv.com
 geo.tibaco.net
 hb.improvedigital.com
 query.autheos.com
-g0gl0lanalytics.com
-api.g0gl0lanalytics.com
+*.g0gl0lanalytics.com
 static.trckingbyte.com
