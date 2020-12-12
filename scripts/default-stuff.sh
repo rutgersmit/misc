@@ -1,5 +1,5 @@
 #! /bin/bash
-
+set -e
 echo -n "❓  Run apt update && apt upgrade && reboot? (y/n) "
 read updateupgrade
 
