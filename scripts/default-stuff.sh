@@ -25,6 +25,18 @@ if [ "$installssh" != "${installssh#[Yy]}" ] ;then
   echo "✔  Installed ssh"
 fi
 
+echo -n "❓  Install zsh and oh-my-zsh (y/n) "
+read installzsh
+if [ "$installzsh" != "${installzsh#[Yy]}" ] ;then
+  echo "🚀  Installing zsh"
+  sudo apt install zsh -y
+  echo "✔  Installed zsh"
+  
+  echo "🚀  Installing oh-my-zsh"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  echo "✔  Installed oh-my-zsh"
+fi
+
 
 echo -n "❓  Set new hostname? (y/n) "
 read setnewhostname
