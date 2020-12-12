@@ -3,6 +3,8 @@ set -e
 echo -n "❓  Run apt update && apt upgrade && reboot? (y/n) "
 read updateupgrade
 
+echo $updateupgrade
+
 if [ "$updateupgrade" != "${updateupgrade#[Yy]}" ] ;then
   echo "🚀  Updating and upgrading."
   sudo apt update
