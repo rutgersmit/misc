@@ -44,7 +44,7 @@ read setnewhostname
 if [ "$setnewhostname" != "${setnewhostname#[Yy]}" ] ;then
   echo -n "❓  Enter new hostname: "
   read newhostname
-  sudo hostnamectl set-hostname newhostname
+  sudo hostnamectl set-hostname $newhostname
   sudo sed -i 's/preserve_hostname: false/preserve_hostname: true/g' config.cfg
   echo "✔  Hostname set"
 fi
