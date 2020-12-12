@@ -1,12 +1,12 @@
 #! /bin/bash
 set -e
-echo -n "❓  Is this a test? (y/n) "
-read test
-echo test
+#echo -n "❓  Is this a test? (y/n) "
+#read test
+#echo test
 echo -n "❓  Run apt update && apt upgrade && reboot? (y/n) "
 read updateupgrade
 
-echo $updateupgrade
+#echo $updateupgrade
 
 if [ "$updateupgrade" != "${updateupgrade#[Yy]}" ] ;then
   echo "🚀  Updating and upgrading."
@@ -19,7 +19,8 @@ if [ "$updateupgrade" != "${updateupgrade#[Yy]}" ] ;then
     echo "➡  Rebooting now"
     sudo reboot
   fi
-  
+else
+  echo "Skipping update"
 fi
 
 echo -n "❓  Install ssh (y/n) "
