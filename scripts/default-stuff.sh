@@ -59,7 +59,15 @@ echo -n "❓  Add user rutger? (y/n) "
 read addmyself
 
 if [ "$addmyself" != "${addmyself#[Yy]}" ] ;then
-  sudo adduser rutger
-  sudo usermod -a -G sudo rutger
+  sudo adduser --disabled-password --gecos "" rutger
   echo "✔  User added"
+  sudo passwd rutger
+  echo "✔  Password changed"
+  sudo usermod -a -G sudo rutger
+  echo "✔  Added to sudoers"
+
+  if [ "$installzsh" != "${installzsh#[Yy]}" ] ;then
+    sudo chsh -s $(which zsh) rutger
+    echo "✔  Changed default shell"
+  fi
 fi
