@@ -1,8 +1,4 @@
-#! /bin/bash
-set -e
-#echo -n "❓  Is this a test? (y/n) "
-#read test
-#echo test
+#! /bin/sh
 echo -n "❓  Run apt update && apt upgrade && reboot? (y/n) "
 read updateupgrade
 
