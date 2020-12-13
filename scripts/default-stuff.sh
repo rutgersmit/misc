@@ -39,6 +39,7 @@ if [ "$installzsh" != "${installzsh#[Yy]}" ] ;then
   sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
   echo "✔  Installed oh-my-zsh"
+  chsh -s $(which zsh)
 #  sudo sed -i 's/\DSHELL=\/bin\/sh/DSHELL=/bin/zsh/g' /etc/adduser.conf
 fi
 
