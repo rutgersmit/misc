@@ -19,6 +19,7 @@ else
   echo "Skipping update"
 fi
 
+
 echo -n "❓  Install ssh (y/n) "
 read installssh
 if [ "$installssh" != "${installssh#[Yy]}" ] ;then
@@ -35,8 +36,10 @@ if [ "$installzsh" != "${installzsh#[Yy]}" ] ;then
   echo "✔  Installed zsh"
   
   echo "🚀  Installing oh-my-zsh"
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+
   echo "✔  Installed oh-my-zsh"
+#  sudo sed -i 's/\DSHELL=\/bin\/sh/DSHELL=/bin/zsh/g' /etc/adduser.conf
 fi
 
 
@@ -51,7 +54,6 @@ if [ "$setnewhostname" != "${setnewhostname#[Yy]}" ] ;then
   echo "✔  Hostname set"
 fi
 
-
 echo -n "❓  Add user rutger? (y/n) "
 read addmyself
 
@@ -60,4 +62,3 @@ if [ "$addmyself" != "${addmyself#[Yy]}" ] ;then
   sudo usermod -a -G sudo rutger
   echo "✔  User added"
 fi
-
