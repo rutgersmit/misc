@@ -64,7 +64,13 @@ if [ "$addmyself" != "${addmyself#[Yy]}" ] ;then
   sudo passwd rutger
   echo "✔  Password changed"
   sudo usermod -a -G sudo rutger
-  echo "✔  Added to sudoers"
+  echo "✔  Added to sudoers group"
+
+  if command -v docker &> /dev/null
+  then
+    sudo usermod -a -G docker rutger
+    echo "✔  Added to docker group"
+  fi
 
   if [ "$installzsh" != "${installzsh#[Yy]}" ] ;then
     sudo chsh -s $(which zsh) rutger
