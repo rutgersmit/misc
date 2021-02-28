@@ -29,5 +29,10 @@ esac
 
 URL="https://www.bing.com"$(curl -s 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=$l' | jq -r '.images[0].url')
 wget -q -O $HOME/Pictures/wallpaper.jpg $URL
-convert $HOME/Pictures/wallpaper.jpg -filter Gaussian -blur 0x3 $HOME/Pictures/wallpaper-blur.jpg
+
+if command -v convert &> /dev/null
+then
+    convert $HOME/Pictures/wallpaper.jpg -filter Gaussian -blur 0x3 $HOME/Pictures/wallpaper-blur.jpg
+fi
+
 gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/wallpaper.jpg
