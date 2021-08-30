@@ -28,7 +28,6 @@
 # esac
 l='en-US'
 
-
 URL="https://www.bing.com"$(curl -s 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=$l' | jq -r '.images[0].url')
 wget -q -O $HOME/Pictures/wallpaper-new.jpg $URL
 
@@ -43,7 +42,7 @@ gsettings set org.gnome.desktop.background picture-uri file://$HOME/Pictures/wal
 echo -n "Nice wallpaper? (Y/n)? "
 read answer
 if [ "$answer" != "${answer#[Nn]}" ] ;then
-    echo "Ok, reverting to the previous"
+    echo "Oh, ok... reverting"
 else
     cp -r $HOME/Pictures/wallpaper-new.jpg $HOME/Pictures/wallpaper.jpg
     wallpaper="file://$HOME/Pictures/wallpaper.jpg"
@@ -51,4 +50,4 @@ fi
 
 rm $HOME/Pictures/wallpaper-new.jpg
 
-gsettings set org.gnome.desktop.background picture-uri $wallpaper
+gsettings set org.gnome.desktop.background picture-uri "${wallpaper}"
