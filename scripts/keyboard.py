@@ -6,7 +6,7 @@ device_manager = DeviceManager()
 
 
 if len(device_manager.devices) == 0:
-    print("Did not fund any Razr devices ¯\_(ツ)_/¯")
+    print("Did not find any Razr devices ¯\_(ツ)_/¯")
 
 # Iterate over each device and pretty out some standard information about each
 for device in device_manager.devices:
