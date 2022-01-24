@@ -18,3 +18,10 @@ hb.improvedigital.com
 query.autheos.com
 *.g0gl0lanalytics.com
 static.trckingbyte.com
+ads-serve.brave.com
+ads-static.brave.com
+click-nl.plista.com
+ib.adnxs-simple.com
+*.primed.io
+metrics.nu.nl
+chunks.tunein.com
