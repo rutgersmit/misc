@@ -25,3 +25,4 @@ ib.adnxs-simple.com
 primed.io
 metrics.nu.nl
 chunks.tunein.com
+zivver.com
